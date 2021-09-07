@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">RetrofitArraDeObjetos</string>
+    <string name="base_url">https://jsonplaceholder.typícode.com/</string>
+</resources>
