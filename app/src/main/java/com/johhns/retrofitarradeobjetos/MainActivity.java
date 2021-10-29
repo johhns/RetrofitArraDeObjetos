@@ -24,12 +24,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        txtJson = findViewById(R.id.txtJSON) ;
+
         getPosts();
     }
 
     private void getPosts(){
         Retrofit retrofit = new Retrofit.Builder()
-                                        .baseUrl("https://jsonplaceholder.typícode.com/")
+                                        .baseUrl("https://jsonplaceholder.typicode.com/")
                                         .addConverterFactory(GsonConverterFactory.create())
                                         .build() ;
         JsonPlaceHolderApi jsonPlaceHolderApi = retrofit.create( JsonPlaceHolderApi.class ) ;
@@ -49,16 +52,14 @@ public class MainActivity extends AppCompatActivity {
                     contenido += "title = " + p.getTitle() + "\n" ;
                     contenido += "id = " + p.getId() + "\n" ;
                     contenido += "body = " + p.getBody() + "\n\n" ;
-                    //txtJson.setText( contenido );
-                    txtJson.setText("Exito");
+                    txtJson.append( contenido );
                 }
 
             }
 
             @Override
             public void onFailure(Call<List<Posts>> call, Throwable t) {
-               //txtJson.setText( t.getMessage().toString() );
-               txtJson.setText("Ocurrio un error");
+               txtJson.setText( t.getMessage().toString() );
             }
         });
     }
